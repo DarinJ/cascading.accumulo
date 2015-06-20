@@ -1,17 +1,28 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <groupId>com.talk3.cascading</groupId>
+    <artifactId>accumulo-parent</artifactId>
 
-    <groupId>cascading-for-accumulo</groupId>
-    <artifactId>cascading.accumulo</artifactId>
     <version>1.0</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
-    <name>cascading.accumulo</name>
+    <name>accumulo-parent</name>
     <url>http://maven.apache.org</url>
+    <modules>
+        <module>cascading-accumulo</module>
+        <module>scalding-accumulo</module>
+        <module>scalding-examples</module>
+    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <cascading.version>2.5.4</cascading.version>
+        <scalding.version>0.9.1</scalding.version>
+        <scala.version>2.10.3</scala.version>
+        <scala.major.version>2.10</scala.major.version>
+        <hadoop.version>2.5.0</hadoop.version>
+        <accumulo.version>1.6.0</accumulo.version>
     </properties>
 
     <repositories>
@@ -29,32 +40,68 @@
         </repository>
     </repositories>
 
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>cascading</groupId>
-            <artifactId>cascading-core</artifactId>
-            <version>2.5.2</version>
-        </dependency>
-        <dependency>
-            <groupId>cascading</groupId>
-            <artifactId>cascading-hadoop</artifactId>
-            <version>2.5.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.accumulo</groupId>
-            <artifactId>accumulo-core</artifactId>
-            <version>1.5.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-client</artifactId>
-            <version>2.0.0-cdh4.5.0</version>
-        </dependency>
-    </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>cascading</groupId>
+                <artifactId>cascading-core</artifactId>
+                <version>${cascading.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cascading</groupId>
+                <artifactId>cascading-hadoop</artifactId>
+                <version>${cascading.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.accumulo</groupId>
+                <artifactId>accumulo-core</artifactId>
+                <version>${accumulo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.hadoop</groupId>
+                <artifactId>hadoop-client</artifactId>
+                <version>${hadoop.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <!--Test Dependencies-->
+            <dependency>
+                <groupId>org.apache.accumulo</groupId>
+                <artifactId>accumulo-minicluster</artifactId>
+                <version>${accumulo.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>[3.8,4.11]</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.scalatest</groupId>
+                <artifactId>scalatest_${scala.major.version}</artifactId>
+                <version>2.2.1</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!-- scala/scalding deps -->
+            <dependency>
+                <groupId>com.twitter</groupId>
+                <artifactId>scalding-core_${scala.major.version}</artifactId>
+                <version>${scalding.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.twitter</groupId>
+                <artifactId>scalding-args_2.10</artifactId>
+                <version>${scalding.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.scala-lang</groupId>
+                <artifactId>scala-library</artifactId>
+                <version>${scala.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
 </project>

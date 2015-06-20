@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>accumulo-parent</artifactId>
+        <groupId>com.talk3.cascading</groupId>
+        <version>1.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    
+    <artifactId>scalding-accumulo</artifactId>
+    <packaging>jar</packaging>
+
+
+
+    <dependencies>
+        <dependency>
+            <groupId>com.talk3.cascading</groupId>
+            <artifactId>cascading-accumulo</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+        <!-- scala/scalding deps -->
+        <dependency>
+            <groupId>com.twitter</groupId>
+            <artifactId>scalding-core_${scala.major.version}</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.twitter</groupId>
+            <artifactId>scalding-args_2.10</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+        </dependency>
+
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Maven Scala Plugin for compiling Scala code -->
+            <plugin>
+                <groupId>org.scala-tools</groupId>
+                <artifactId>maven-scala-plugin</artifactId>
+                <version>2.15.2</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+
+    </build>
+
+
+</project>
