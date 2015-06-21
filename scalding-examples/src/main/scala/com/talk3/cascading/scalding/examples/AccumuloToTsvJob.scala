@@ -1,4 +1,4 @@
-package com.talk3.cascading.scalding.examples.examples
+package com.talk3.cascading.scalding.examples
 
 import cascading.tuple.{TupleEntry, Fields}
 import com.talk3.cascading.accumulo.AccumuloConnector.AccumuloConnectorBuilder
