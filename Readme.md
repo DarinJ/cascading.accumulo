@@ -1,5 +1,5 @@
 This repository includes source code for Cascading and Scalding extensions for Accumulo.  This work was originally 
-developed by talk3.  The original code in [here](https://github.com/airawat/cascading.accumulo). I recently modified for 
+developed by talk3.  The original code is [here](https://github.com/airawat/cascading.accumulo). I recently modified for 
 my company's use cases, specifically:
 - A builder pattern to establish the Accumulo connection
 - Support for multiple ranges
@@ -18,7 +18,7 @@ http://opensource.org/licenses/Apache-2.0.
 Examples for using the Cascading extensions for Accumulo are available at-
 =========================================================================== 
 
-Currently to scalding examples exist in the scalding examples subdirectory.
+Currently two scalding examples exist in the scalding examples subdirectory.
 
 To run TsvToAccumulo you must has a tsv file in hdfs of the form:
 ```
