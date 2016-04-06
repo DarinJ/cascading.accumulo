@@ -12,7 +12,7 @@ class AccumuloToTsvJob(args: Args) extends Job(args){
             .addUserName(args("user"))
             .addPassword(args("pass"))
             .addAuths("public")
-            .setOffline(false).build()
+            .setOffline(args("offline").toBoolean).build()
   val source=AccumuloSource(conn,new AccumuloScheme())
 
   val sink=Tsv(args("input"),('rowId,'val))

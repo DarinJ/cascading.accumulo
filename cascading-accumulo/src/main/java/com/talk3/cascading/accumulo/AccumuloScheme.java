@@ -57,7 +57,7 @@ public class AccumuloScheme extends Scheme<JobConf, RecordReader, OutputCollecto
     private Fields accumuloSinkFields = new Fields("rowId","columnFamily","columnQualifier","columnVisibility",
             "timeStamp","value");
     private Fields accumuloSourceFields = new Fields("key","value");
-    private List<Range> ranges= new LinkedList<Range>();
+    private transient List<Range> ranges= new LinkedList<Range>();
     private List<IteratorSetting> iteratorSettings= new LinkedList<IteratorSetting>();
 
     private boolean addRegexFilter;
@@ -307,7 +307,7 @@ public class AccumuloScheme extends Scheme<JobConf, RecordReader, OutputCollecto
         setSourceFields(accumuloSourceFields);
         AccumuloTap accumuloTap = (AccumuloTap) tap;
 
-        if (false == ConfiguratorBase.isConnectorInfoSet(
+        if (!ConfiguratorBase.isConnectorInfoSet(
                 AccumuloInputFormat.class, conf)) {
             try {
                 AccumuloInputFormat.setConnectorInfo(conf,
@@ -335,7 +335,9 @@ public class AccumuloScheme extends Scheme<JobConf, RecordReader, OutputCollecto
             if (!rowKeyStart.equals("*") && !rowKeyEnd.equals("*/0")) {
                 AccumuloInputFormat.setRanges(conf, Collections.singleton(new Range(rowKeyStart, rowKeyEnd)));
             }
-
+            if (ranges.size()>0) {
+                AccumuloInputFormat.setRanges(conf, ranges);
+            }
             if (addRegexFilter) {
                 IteratorSetting regex = new IteratorSetting(50, "regex", RegExFilter.class);
                 RegExFilter.setRegexs(regex, this.rowRegex, this.columnFamilyRegex, this.columnQualifierRegex,
@@ -357,6 +359,7 @@ public class AccumuloScheme extends Scheme<JobConf, RecordReader, OutputCollecto
               AgeOffFilter.setNegate(minAgeFilter, true);
               AccumuloInputFormat.addIterator(conf, minAgeFilter);
             }
+            AccumuloInputFormat.setOfflineTableScan(conf, accumuloTap.offline);
         }
     }
 

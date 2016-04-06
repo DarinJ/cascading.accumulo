@@ -50,7 +50,6 @@ public class AccumuloCollector extends TupleEntrySchemeCollector implements Outp
     if(!accumuloTap.offline) {
         AccumuloOutputFormat outputFormat = (AccumuloOutputFormat) conf.getOutputFormat();
         writer = outputFormat.getRecordWriter(null, conf, tap.getIdentifier(), Reporter.NULL);
-        
     }else{
         AccumuloFileOutputFormat outputFormat=(AccumuloFileOutputFormat) conf.getOutputFormat();
         writer = outputFormat.getRecordWriter(null, conf, tap.getIdentifier(), Reporter.NULL);

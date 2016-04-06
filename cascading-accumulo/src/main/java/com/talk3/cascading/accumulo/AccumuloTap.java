@@ -100,7 +100,7 @@ public class AccumuloTap extends Tap<JobConf, RecordReader, OutputCollector>
         accumuloTableName =conn.getTable();
         accumuloZookeeperQuorum=conn.getZookeepers();
         offline=conn.isOffline();
-        maxMutationBufferSize=conn.getNumWriteThreads();
+        maxMutationBufferSize=conn.getMaxBufferSize();
         maxWriteThreads=conn.getNumWriteThreads();
         tapUUID = UUID.randomUUID().toString();
         resourceID=conn.toString();

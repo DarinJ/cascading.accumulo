@@ -22,7 +22,7 @@
         <scala.version>2.10.3</scala.version>
         <scala.major.version>2.10</scala.major.version>
         <hadoop.version>2.5.0</hadoop.version>
-        <accumulo.version>1.6.0</accumulo.version>
+        <accumulo.version>1.6.5</accumulo.version>
     </properties>
 
     <repositories>

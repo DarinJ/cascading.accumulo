@@ -73,6 +73,11 @@ public class AccumuloConnector extends Object{
         return numWriteThreads;
     }
 
+    public long getMaxBufferSize() {
+        return maxBufferSize;
+    }
+
+
     public boolean isOffline() {
         return offline;
     }
